@@ -15,29 +15,32 @@ public class LoginPage {
         driver.manage().window().maximize();
 
         // we use get method to open any web page
-        driver.get("https://tabcash/Login.aspx");
+        driver.get("https://tabcash/Login");
 
-        WebElement email = driver.findElement(By.id("email"));
+        WebElement email = driver.findElement(By.id("user_name"));
         email.isDisplayed();
         email.isEnabled();
-        email.sendKeys("admin@gmail.com");
+        email.sendKeys("test@admin");
 
         WebElement password = driver.findElement(By.id("password"));
         password.isDisplayed();
         password.isEnabled();
-        password.sendKeys("123456");
+        password.sendKeys("TapCash@2023");
 
-        WebElement loginButton = driver.findElement(By.id("loginButton"));
+        WebElement loginButton = driver.findElement(By.id("login"));
         loginButton.isDisplayed();
         loginButton.isEnabled();
         loginButton.click();
-        driver.navigate().to("https://tabcash/home.com/");
+        String currentUrl = driver.getCurrentUrl();
+        if(currentUrl.contains("/login"))
+            driver.navigate().to("https://tabcash/home.com/");
 
-        WebElement RegisterButton = driver.findElement(By.id("RegisterButton"));
+        WebElement RegisterButton = driver.findElement(By.id("register"));
         RegisterButton.isDisplayed();
         RegisterButton.isEnabled();
-        RegisterButton.click();
-        driver.navigate().to("https://register.com/");
+        loginButton.click();
+        if(currentUrl.contains("/register"))
+            driver.navigate().to("https://register.com/");
 
 
 //        WebElement Text = driver.findElement(By.id("ctl00_CPHContainer_lblOutput"));

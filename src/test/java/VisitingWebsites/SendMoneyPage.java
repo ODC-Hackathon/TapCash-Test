@@ -15,9 +15,9 @@ public class SendMoneyPage {
         driver.manage().window().maximize();
 
         // we use get method to open any web page
-        driver.get("https://tabcash/sendmoney.aspx");
+        driver.get("https://tabcash/user/sendmoney");
 
-        WebElement username = driver.findElement(By.id("username"));
+        WebElement username = driver.findElement(By.id("user_name"));
         username.isDisplayed();
         username.isEnabled();
         username.sendKeys("sarah123");
@@ -30,13 +30,7 @@ public class SendMoneyPage {
         WebElement sendMoney = driver.findElement(By.id("sendMoney"));
         sendMoney.isDisplayed();
         sendMoney.isEnabled();
-        sendMoney.click();
-        driver.get("https://tabcash/home.aspx");
-
-//        WebElement Text = driver.findElement(By.id("ctl00_CPHContainer_lblOutput"));
-//        String InvalidMsg =Text.getText();
-//        org.junit.Assert.assertEquals(InvalidMsg,"You have not activate your account. Please first active your account from verification link. A verification link has been sent to your email,\n" +
-//                "if you haven't got it yet then either check your spam or click here to resend it!!! ");
-
+        if(sendMoney.click())
+            driver.get("https://tabcash/home.aspx");
     }
 }

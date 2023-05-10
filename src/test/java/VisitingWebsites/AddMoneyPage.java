@@ -16,7 +16,7 @@ public class AddMoneyPage {
         driver.manage().window().maximize();
 
         // we use get method to open any web page
-        driver.get("https://tabcash/addmoney.aspx");
+        driver.get("https://tabcash/user/addmoney");
 
         WebElement amount = driver.findElement(By.id("amount"));
         amount.isDisplayed();
@@ -26,11 +26,14 @@ public class AddMoneyPage {
         // DropDown
         WebElement dropDown = driver.findElement(By.id("methodTypes"));
         Select typesDropDown = new Select(dropDown);
+        int length = typesDropDown.getOptions().size();
 
-        //selectByValue("")
+        for(int i =0; i<length ; i++)
+        {
+            typesDropDown.selectByIndex(i);
 
-        typesDropDown.selectByIndex(1);
-
+            if(i == 0)
+            {
                 WebElement cardNumber = driver.findElement(By.id("cardNumber"));
                 cardNumber.isDisplayed();
                 cardNumber.isEnabled();
@@ -45,32 +48,31 @@ public class AddMoneyPage {
                 expire.isDisplayed();
                 expire.isEnabled();
                 expire.sendKeys("01-01-2020");
-
-        typesDropDown.selectByIndex(2);
+            }else if(i ==1)
+            {
 
                 WebElement phoneNumber = driver.findElement(By.id("phoneNumber"));
                 phoneNumber.isDisplayed();
                 phoneNumber.isEnabled();
                 phoneNumber.sendKeys("01123456789");
-
-        typesDropDown.selectByIndex(3);
+            }else if(i ==2)
+            {
 
                 WebElement userName = driver.findElement(By.id("userName"));
                 userName.isDisplayed();
                 userName.isEnabled();
-                userName.sendKeys("sarah123");
+                userName.sendKeys("sarah123")
+            }
+        }
 
 
         WebElement addMoney = driver.findElement(By.id("addMoney"));
         addMoney.isDisplayed();
         addMoney.isEnabled();
         addMoney.click();
-        driver.get("https://tabcash/home.aspx");
-
-//        WebElement Text = driver.findElement(By.id("ctl00_CPHContainer_lblOutput"));
-//        String InvalidMsg =Text.getText();
-//        org.junit.Assert.assertEquals(InvalidMsg,"You have not activate your account. Please first active your account from verification link. A verification link has been sent to your email,\n" +
-//                "if you haven't got it yet then either check your spam or click here to resend it!!! ");
+        String currentUrl = driver.getCurrentUrl();
+        if(currentUrl.contains("/user/addMoney"))
+            driver.get("https://tabcash/user/home");
 
     }
 }

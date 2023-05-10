@@ -22,12 +22,12 @@ public class RegisterPage {
         name.isEnabled();
         name.sendKeys("sarah yossri");
 
-        WebElement username = driver.findElement(By.id("username"));
+        WebElement username = driver.findElement(By.id("user_name"));
         username.isDisplayed();
         username.isEnabled();
         username.sendKeys("sarah123");
 
-        WebElement phone = driver.findElement(By.id("phone"));
+        WebElement phone = driver.findElement(By.id("phone_number"));
         phone.isDisplayed();
         phone.isEnabled();
         phone.sendKeys("01123456789");
@@ -42,21 +42,28 @@ public class RegisterPage {
         password.isEnabled();
         password.sendKeys("123456");
 
+        WebElement password = driver.findElement(By.id("password_confirmation"));
+        password.isDisplayed();
+        password.isEnabled();
+        password.sendKeys("123456");
+
+
         WebElement nationalID = driver.findElement(By.id("nationalID"));
         nationalID.isDisplayed();
         nationalID.isEnabled();
         nationalID.sendKeys("12345678912345");
 
-        WebElement registerButton = driver.findElement(By.id("registerButton"));
+        WebElement pincode = driver.findElement(By.id("pincode"));
+        pincode.isDisplayed();
+        pincode.isEnabled();
+        pincode.sendKeys("4888");
+
+        WebElement registerButton = driver.findElement(By.id("register"));
         registerButton.isDisplayed();
         registerButton.isEnabled();
-        registerButton.click();
-        driver.navigate().to("https://tabcash.com/");
 
-//        WebElement Text = driver.findElement(By.id("ctl00_CPHContainer_lblOutput"));
-//        String InvalidMsg =Text.getText();
-//        org.junit.Assert.assertEquals(InvalidMsg,"You have not activate your account. Please first active your account from verification link. A verification link has been sent to your email,\n" +
-//                "if you haven't got it yet then either check your spam or click here to resend it!!! ");
+        if( registerButton.click())
+            driver.navigate().to("https://tabcash.com/");
 
     }
 }
